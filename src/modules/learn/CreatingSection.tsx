@@ -47,19 +47,19 @@ const CreatingSectionContainer = React.forwardRef((props, ref) => {
                       />
                     </Form.Group>
                     <Form.Group></Form.Group>
+                    <FlexboxGrid justify="end">
+                      <ButtonToolbar>
+                        <Button appearance="default">Default</Button>
+                        <Button appearance="primary">Primary</Button>
+                        <Button appearance="link">Link</Button>
+                        <Button appearance="subtle">Subtle</Button>
+                        <Button appearance="ghost" onClick={save}>
+                          Save
+                        </Button>
+                      </ButtonToolbar>
+                    </FlexboxGrid>
                   </Form>
                 </Panel>
-                <FlexboxGrid justify="end">
-                  <ButtonToolbar>
-                    <Button appearance="default">Default</Button>
-                    <Button appearance="primary">Primary</Button>
-                    <Button appearance="link">Link</Button>
-                    <Button appearance="subtle">Subtle</Button>
-                    <Button appearance="ghost" onClick={save}>
-                      Save
-                    </Button>
-                  </ButtonToolbar>
-                </FlexboxGrid>
               </FlexboxGrid.Item>
             </FlexboxGrid>
           </CardContent>
@@ -96,6 +96,6 @@ const CreatingSectionWrapper = styled.div`
 const CardContent = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0px 16px 36px 16px;
+  padding: 0px 16px 16px 16px;
   margin-bottom: 32px;
 `;

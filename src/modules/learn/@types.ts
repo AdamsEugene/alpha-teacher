@@ -21,6 +21,13 @@ export interface InstructorData extends SocialMediaFormData {
 
 export type SectionContentType = "video" | "audio" | "text";
 
+type status = "error" | "wait" | "finish" | "process" | undefined;
+
+export interface DataProps {
+  title: string;
+  status: status;
+}
+
 export const MEDIA_COLORS = {
   email: "#db4437",
   github: "#4078c0",

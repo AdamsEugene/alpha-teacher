@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React from "react";
 import { styled } from "styled-components";
@@ -11,6 +13,7 @@ import {
   RadioTile,
   RadioTileGroup,
   TagInput,
+  useToaster,
 } from "rsuite";
 import { Icon } from "@rsuite/icons";
 import ImageIcon from "@rsuite/icons/Image";
@@ -20,15 +23,32 @@ import { BiHappyAlt } from "react-icons/bi";
 
 import Card from "../../../_shared/components/card/Card";
 import AvatarUploader from "../../../_shared/components/AvatarUploader";
+import CustomMessage from "../../../_shared/components/Message";
+import { DataProps } from "../@types";
 
-const CourseInfoBasic = React.forwardRef((props, ref) => {
-  const save = () => {
-    console.log();
+const CourseInfoBasic = React.forwardRef((props: any, ref) => {
+  const { setStepData, ...others } = props;
+  const _setStepData = setStepData as React.Dispatch<
+    React.SetStateAction<DataProps[]>
+  >;
+
+  const toaster = useToaster();
+  const message = <CustomMessage text="Successfully Added" type="error" />;
+  const save = async () => {
+    await toaster.push(message, { duration: 5000, placement: "topEnd" });
+    _setStepData((p) =>
+      p.map((data, i) => {
+        if (i === 2) {
+          data.status = "finish";
+        }
+        return data;
+      })
+    );
   };
 
   return (
     <CourseInfoBasicWrapper
-      {...props}
+      {...others}
       ref={ref as React.LegacyRef<HTMLDivElement> | undefined}
     >
       <Card
@@ -108,19 +128,19 @@ const CourseInfoBasic = React.forwardRef((props, ref) => {
                       </RadioTileGroup>
                     </Form.Group>
                     <Form.Group></Form.Group>
+                    <FlexboxGrid justify="end">
+                      <ButtonToolbar>
+                        <Button appearance="default">Default</Button>
+                        <Button appearance="primary">Primary</Button>
+                        <Button appearance="link">Link</Button>
+                        <Button appearance="subtle">Subtle</Button>
+                        <Button appearance="ghost" onClick={save}>
+                          Save
+                        </Button>
+                      </ButtonToolbar>
+                    </FlexboxGrid>
                   </Form>
                 </Panel>
-                <FlexboxGrid justify="end">
-                  <ButtonToolbar>
-                    <Button appearance="default">Default</Button>
-                    <Button appearance="primary">Primary</Button>
-                    <Button appearance="link">Link</Button>
-                    <Button appearance="subtle">Subtle</Button>
-                    <Button appearance="ghost" onClick={save}>
-                      Save
-                    </Button>
-                  </ButtonToolbar>
-                </FlexboxGrid>
               </FlexboxGrid.Item>
             </FlexboxGrid>
           </CardContent>
@@ -141,6 +161,6 @@ const CourseInfoBasicWrapper = styled.div`
 const CardContent = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0px 16px 36px 16px;
+  padding: 0px 16px 16px 16px;
   margin-bottom: 32px;
 `;

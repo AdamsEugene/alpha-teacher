@@ -25,6 +25,7 @@ export default function Animate({
       in={inn}
       unmountOnExit
       // placement={"left"}
+      timeout={5000}
     >
       {(props, ref) => (
         <Component {...props} setCurrent={setCurrent} {...others} ref={ref} />

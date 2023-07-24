@@ -10,6 +10,7 @@ import SearchIcon from "@rsuite/icons/Search";
 
 export default function Header() {
   const [active, setActive] = React.useState("learn");
+  const navigate = useNavigate();
 
   const renderIconButton = (
     props: any,
@@ -51,6 +52,7 @@ export default function Header() {
           circle
           src="https://avatars.githubusercontent.com/u/12592949"
           alt="@superman66"
+          onClick={() => navigate("/settings")}
         />
       </AvatarWrapper>
     </MainWrapper>
