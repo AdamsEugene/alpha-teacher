@@ -5,9 +5,11 @@ import "react-phone-input-2/lib/style.css";
 import PhoneInput from "react-phone-input-2";
 import Card from "../../_shared/components/card/Card";
 import Animate from "../../_shared/components/Animate";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [phone, setPhone] = React.useState<string>();
+  const navigate = useNavigate();
 
   const sendOTP = () => {
     console.log();
@@ -51,7 +53,12 @@ export default function Signup() {
                       </Form.Group>
                       <Form.Group>
                         <ButtonToolbar>
-                          <Button appearance="primary">Sign in</Button>
+                          <Button
+                            appearance="primary"
+                            onClick={() => navigate("otp")}
+                          >
+                            Sign in
+                          </Button>
                         </ButtonToolbar>
                       </Form.Group>
                     </Form>
