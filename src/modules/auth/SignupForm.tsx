@@ -6,10 +6,12 @@ import Selections from "./form/Selections";
 import Preview from "./form/Preview";
 import Animate from "../../_shared/components/Animate";
 
-const formPages = [
-  { title: "Basic Info" },
-  { title: "Selections" },
-  { title: "Finished" },
+type status = "error" | "wait" | "finish" | "process" | undefined;
+
+const formPages: { title: string; description?: string; status?: status }[] = [
+  { title: "Basic Info", status: "wait" },
+  { title: "Selections", status: "wait" },
+  { title: "Finished", status: "wait" },
 ];
 
 export default function SignupForm() {

@@ -3,7 +3,7 @@ import { Steps } from "rsuite";
 type status = "error" | "wait" | "finish" | "process" | undefined;
 interface CustomStepsProps {
   current: number;
-  data: { title: string; description?: string; status: status }[];
+  data: { title: string; description?: string; status?: status }[];
 }
 
 export default function CustomSteps(props: CustomStepsProps) {
