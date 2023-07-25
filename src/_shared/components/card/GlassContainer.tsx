@@ -21,4 +21,5 @@ const GlassContainerWrapper = styled.div`
   width: 100%;
   border-radius: 12px;
   padding: 8px;
+  backface-visibility: hidden;
 `;

@@ -1,6 +1,7 @@
 import { Avatar, FlexboxGrid, Form, Input, Tag, TagGroup } from "rsuite";
 import { styled } from "styled-components";
 import { InstructorData, MEDIA_COLORS } from "../@types";
+import ConditionalRender from "../../../_shared/components/ConditionalRender";
 
 interface Props {
   instructor?: Partial<InstructorData>;
@@ -75,69 +76,97 @@ export default function ViewInstructor(props: Props) {
       <Form.Group>
         <Form.ControlLabel>Links</Form.ControlLabel>
         <TagGroup>
-          {instructor?.email ? (
-            <TagWrapper $bg={MEDIA_COLORS["email"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                email: {instructor?.email}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.facebook ? (
-            <TagWrapper $bg={MEDIA_COLORS["facebook"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                facebook: {instructor?.facebook}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.github ? (
-            <TagWrapper $bg={MEDIA_COLORS["github"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                github: {instructor?.github}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.instagram ? (
-            <TagWrapper $bg={MEDIA_COLORS["instagram"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                instagram: {instructor?.instagram}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.linkedIn ? (
-            <TagWrapper $bg={MEDIA_COLORS["linkedIn"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                linkedIn: {instructor?.linkedIn}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.personalWebsite ? (
-            <TagWrapper $bg={MEDIA_COLORS["personalWebsite"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                personalWebsite: {instructor?.personalWebsite}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.tiktok ? (
-            <TagWrapper $bg={MEDIA_COLORS["tiktok"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                tiktok: {instructor?.tiktok}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.twitter ? (
-            <TagWrapper $bg={MEDIA_COLORS["twitter"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                twitter: {instructor?.twitter}
-              </a>
-            </TagWrapper>
-          ) : null}
-          {instructor?.whatsapp ? (
-            <TagWrapper $bg={MEDIA_COLORS["whatsapp"]} size="lg">
-              <a target="_blank" href={""} rel="noreferrer">
-                whatsapp: {instructor?.whatsapp}
-              </a>
-            </TagWrapper>
-          ) : null}
+          <ConditionalRender
+            renderIf={!!instructor?.email}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["email"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  email: {instructor?.email}
+                </a>
+              </TagWrapper>
+            }
+          />
+          <ConditionalRender
+            renderIf={!!instructor?.facebook}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["facebook"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  facebook: {instructor?.facebook}
+                </a>
+              </TagWrapper>
+            }
+          />
+
+          <ConditionalRender
+            renderIf={!!instructor?.github}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["github"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  github: {instructor?.github}
+                </a>
+              </TagWrapper>
+            }
+          />
+          <ConditionalRender
+            renderIf={!!instructor?.instagram}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["instagram"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  instagram: {instructor?.instagram}
+                </a>
+              </TagWrapper>
+            }
+          />
+          <ConditionalRender
+            renderIf={!!instructor?.linkedIn}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["linkedIn"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  linkedIn: {instructor?.linkedIn}
+                </a>
+              </TagWrapper>
+            }
+          />
+          <ConditionalRender
+            renderIf={!!instructor?.personalWebsite}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["personalWebsite"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  personalWebsite: {instructor?.personalWebsite}
+                </a>
+              </TagWrapper>
+            }
+          />
+          <ConditionalRender
+            renderIf={!!instructor?.tiktok}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["tiktok"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  tiktok: {instructor?.tiktok}
+                </a>
+              </TagWrapper>
+            }
+          />
+          <ConditionalRender
+            renderIf={!!instructor?.twitter}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["twitter"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  twitter: {instructor?.twitter}
+                </a>
+              </TagWrapper>
+            }
+          />
+          <ConditionalRender
+            renderIf={!!instructor?.whatsapp}
+            children={
+              <TagWrapper $bg={MEDIA_COLORS["whatsapp"]} size="lg">
+                <a target="_blank" href={""} rel="noreferrer">
+                  whatsapp: {instructor?.whatsapp}
+                </a>
+              </TagWrapper>
+            }
+          />
         </TagGroup>
       </Form.Group>
     </Form>

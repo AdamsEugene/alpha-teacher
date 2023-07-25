@@ -10,7 +10,7 @@ import CreateCourse from "../modules/learn/CreateCourse";
 import CreatingSection from "../modules/learn/CreatingSection";
 import Learn from "../modules/learn/Learn";
 import LearnOutlet from "../modules/learn/LearnOutlet";
-import Preview from "../modules/learn/Preview";
+import Preview from "../modules/learn/preview/Preview";
 import SectionContent from "../modules/learn/SectionContent";
 import SectionContentType from "../modules/learn/SectionContentType";
 import Plan from "../modules/plan/Plan";

@@ -23,7 +23,7 @@ export default function CourseCard(props: Props) {
                       <Avatar
                         size="sm"
                         circle
-                        src="https://avatars.githubusercontent.com/u/12592949"
+                        src="https://avatars.githubusercontent.com/u/8225666"
                         alt="@SevenOutman"
                       />
                     </SmallImage>
@@ -50,7 +50,7 @@ export default function CourseCard(props: Props) {
                       <Avatar
                         size="sm"
                         circle
-                        src="https://avatars.githubusercontent.com/u/12592949"
+                        src="https://avatars.githubusercontent.com/u/8225666"
                         alt="@SevenOutman"
                       />
                     </SmallImageBottom>
