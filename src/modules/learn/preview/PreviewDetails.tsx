@@ -17,7 +17,7 @@ import {
   Tag,
   TagGroup,
 } from "rsuite";
-import { Link, animateScroll as scroll, Element } from "react-scroll";
+import { Link, Element } from "react-scroll";
 import { styled } from "styled-components";
 import { GiTeacher } from "react-icons/gi";
 import { HiInformationCircle } from "react-icons/hi";
