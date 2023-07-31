@@ -291,6 +291,14 @@ const GlobalStyle = createGlobalStyle`
     .rs-divider {
       background: ${({ theme }) => theme.colors.border.primary};
     }
+
+    .rs-panel-header {
+      color: ${({ theme }) => theme.colors.text.primary};
+    }
+
+    svg {
+      fill: ${({ theme }) => theme.colors.icon.primary};
+    }
 `;
 
 export default GlobalStyle;
