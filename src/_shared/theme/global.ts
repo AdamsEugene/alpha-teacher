@@ -105,6 +105,10 @@ const GlobalStyle = createGlobalStyle`
     font-size:20px;
   }
 
+  .rs-input:disabled {
+    background:${({ theme }) => theme.colors.background.cards};
+  }
+
   .jcWlLe .containerStyle .inputStyle {
      background:${({ theme }) => theme.colors.background.primary};
     border-color:${({ theme }) => theme.colors.border.primary};
@@ -286,6 +290,14 @@ const GlobalStyle = createGlobalStyle`
 
     .rs-divider {
       background: ${({ theme }) => theme.colors.border.primary};
+    }
+
+    .rs-panel-header {
+      color: ${({ theme }) => theme.colors.text.primary};
+    }
+
+    svg {
+      fill: ${({ theme }) => theme.colors.icon.primary};
     }
 `;
 

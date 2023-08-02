@@ -1,8 +1,11 @@
 import { styled } from "styled-components";
 import Card from "../../_shared/components/card/Card";
 import { FlexboxGrid, Panel, Form, ButtonToolbar, Button } from "rsuite";
+import { useNavigate } from "react-router-dom";
 
 export default function ForgotPassword() {
+  const navigate = useNavigate();
+
   return (
     <LoginWrapper>
       <CardWrapper>
@@ -29,7 +32,12 @@ export default function ForgotPassword() {
                       </Form.Group>
                       <Form.Group>
                         <ButtonToolbar>
-                          <Button appearance="primary">Sign in</Button>
+                          <Button
+                            appearance="primary"
+                            onClick={() => navigate("/")}
+                          >
+                            Sign in
+                          </Button>
                           <Button appearance="link">Forgot password?</Button>
                         </ButtonToolbar>
                       </Form.Group>

@@ -8,10 +8,12 @@ import { FlexboxGrid, Panel, Form, ButtonToolbar, Button } from "rsuite";
 import OtpInput from "react18-input-otp";
 import Card from "../../_shared/components/card/Card";
 import Animate from "../../_shared/components/Animate";
+import { useNavigate } from "react-router-dom";
 
 export default function OTP() {
   const [otp, setOtp] = React.useState("");
   const OTP_LENGTH = 6;
+  const navigate = useNavigate();
 
   const handleChange = (enteredOtp: any) => {
     setOtp(enteredOtp);
@@ -56,7 +58,12 @@ export default function OTP() {
                       </Form.Group>
                       <Form.Group>
                         <ButtonToolbar>
-                          <Button appearance="primary">Sign in</Button>
+                          <Button
+                            appearance="primary"
+                            onClick={() => navigate("/signup/form")}
+                          >
+                            Sign in
+                          </Button>
                         </ButtonToolbar>
                       </Form.Group>
                     </Form>

@@ -10,9 +10,11 @@ import CreateCourse from "../modules/learn/CreateCourse";
 import CreatingSection from "../modules/learn/CreatingSection";
 import Learn from "../modules/learn/Learn";
 import LearnOutlet from "../modules/learn/LearnOutlet";
+import Preview from "../modules/learn/preview/Preview";
 import SectionContent from "../modules/learn/SectionContent";
 import SectionContentType from "../modules/learn/SectionContentType";
 import Plan from "../modules/plan/Plan";
+import Setting from "../modules/settings/Settings";
 import Teach from "../modules/teach/Teach";
 import { Route, RouteConstant } from "./@types";
 
@@ -70,6 +72,22 @@ const learning = {
   path: "/learn/:programId",
   icon: "creative commons" as string,
   element: "Learning",
+  children: null,
+};
+const coursePreview = {
+  id: "coursePreview",
+  displayName: "Course Preview",
+  path: "/learn/:courseId/preview",
+  icon: "creative commons" as string,
+  element: Preview,
+  children: null,
+};
+const settings = {
+  id: "settings",
+  displayName: "Settings",
+  path: "/settings",
+  icon: "creative commons" as string,
+  element: Setting,
   children: null,
 };
 
@@ -168,6 +186,8 @@ const ROUTES_CONSTANTS: RouteConstant = {
   creatingSectionType,
   creatingSectionContent,
   learning,
+  coursePreview,
+  settings,
   myCourses,
 };
 

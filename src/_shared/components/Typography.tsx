@@ -17,7 +17,7 @@ const Typography = styled.p<StylingProps>`
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   font-style: normal;
-  font-weight: ${(props) => (props.$variant === "title" ? 900 : 700)};
+  /* font-weight: ${(props) => (props.$variant === "title" ? 900 : 700)}; */
   margin-bottom: ${(props) => (props.$gutterBottom ? "1rem" : 0)};
   border: ${(props) => {
     const borderColor = {

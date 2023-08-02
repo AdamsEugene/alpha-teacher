@@ -25,7 +25,7 @@ const Preview = React.forwardRef<unknown, Props>((props, ref) => {
   const navigate = useNavigate();
 
   const signup = () => {
-    navigate("/dashboard");
+    navigate("/learn");
   };
 
   return (

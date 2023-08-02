@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
+import { PropsWithChildren } from "react";
 import { styled } from "styled-components";
 
-export default function GlassContainer() {
-  return <GlassContainerWrapper>GlassContainer</GlassContainerWrapper>;
+export default function GlassContainer(props: PropsWithChildren) {
+  const { children } = props;
+
+  return <GlassContainerWrapper>{children}</GlassContainerWrapper>;
 }
 
 const GlassContainerWrapper = styled.div`
@@ -17,5 +20,6 @@ const GlassContainerWrapper = styled.div`
   min-height: 200px;
   width: 100%;
   border-radius: 12px;
-  padding: 16px;
+  padding: 8px;
+  backface-visibility: hidden;
 `;

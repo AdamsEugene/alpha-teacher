@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from "react";
 import { styled } from "styled-components";
 import Card from "../../../_shared/components/card/Card";
@@ -11,20 +15,32 @@ import {
   SelectPicker,
 } from "rsuite";
 import AvatarUploader from "../../../_shared/components/AvatarUploader";
+import { DataProps } from "../@types";
 
 const data = ["Lloyd", "Alice", "Julia", "Albert"].map((item) => ({
   label: item,
   value: item,
 }));
 
-const PersonalInfo = React.forwardRef((props, ref) => {
+const PersonalInfo = React.forwardRef((props: any, ref) => {
+  const { setStepData, ...others } = props;
+  const _setStepData = setStepData as React.Dispatch<
+    React.SetStateAction<DataProps[]>
+  >;
   const save = () => {
-    console.log();
+    _setStepData((p) =>
+      p.map((data, i) => {
+        if (i === 0) {
+          data.status = "finish";
+        }
+        return data;
+      })
+    );
   };
 
   return (
     <PersonalInfoWrapper
-      {...props}
+      {...others}
       ref={ref as React.LegacyRef<HTMLDivElement> | undefined}
     >
       <Card
@@ -82,19 +98,19 @@ const PersonalInfo = React.forwardRef((props, ref) => {
                       <Form.Control name="name" type="number" />
                     </Form.Group>
                     <Form.Group></Form.Group>
+                    <FlexboxGrid justify="end">
+                      <ButtonToolbar>
+                        <Button appearance="default">Default</Button>
+                        <Button appearance="primary">Primary</Button>
+                        <Button appearance="link">Link</Button>
+                        <Button appearance="subtle">Subtle</Button>
+                        <Button appearance="ghost" onClick={save}>
+                          Save
+                        </Button>
+                      </ButtonToolbar>
+                    </FlexboxGrid>
                   </Form>
                 </Panel>
-                <FlexboxGrid justify="end">
-                  <ButtonToolbar>
-                    <Button appearance="default">Default</Button>
-                    <Button appearance="primary">Primary</Button>
-                    <Button appearance="link">Link</Button>
-                    <Button appearance="subtle">Subtle</Button>
-                    <Button appearance="ghost" onClick={save}>
-                      Save
-                    </Button>
-                  </ButtonToolbar>
-                </FlexboxGrid>
               </FlexboxGrid.Item>
             </FlexboxGrid>
           </CardContent>
@@ -115,6 +131,6 @@ const PersonalInfoWrapper = styled.div`
 const CardContent = styled.div`
   width: 100%;
   height: 100%;
-  padding: 0px 16px 36px 16px;
+  padding: 0px 16px 16px 16px;
   margin-bottom: 32px;
 `;

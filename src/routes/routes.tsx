@@ -28,6 +28,15 @@ const signupChildren: RouteObject[] = [
 
 const dashboardChildren: RouteObject[] = [
   {
+    id: K.settings.id,
+    path: K.settings.path,
+    element: <K.settings.element />,
+    errorElement: <h1>settings</h1>,
+    handle: {
+      crumb: () => "Settings",
+    },
+  },
+  {
     id: K.plan.id,
     path: K.plan.path,
     element: <K.plan.element />,
@@ -112,6 +121,15 @@ const dashboardChildren: RouteObject[] = [
         errorElement: <h1>myCourses</h1>,
         handle: {
           crumb: () => "My Courses",
+        },
+      },
+      {
+        id: K.coursePreview.id,
+        path: K.coursePreview.path,
+        element: <K.coursePreview.element />,
+        errorElement: <h1>coursePreview</h1>,
+        handle: {
+          crumb: () => "Course Preview",
         },
       },
       {

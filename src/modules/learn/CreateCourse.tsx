@@ -17,19 +17,21 @@ import PersonalInfo from "./form/PersonalInfo";
 import FloatingButton from "../../_shared/components/FloatingButton";
 import CourseInfoBasic from "./form/CourseInfoBasic";
 import Instructors from "./form/Instructors";
-import { InstructorData } from "./@types";
+import { DataProps, InstructorData } from "./@types";
 import { StyledDrawer } from "../../_shared/components/StyledDrawer";
+import ViewInstructor from "./form/ViewInstructor";
 
-const data = [
-  { title: "Personal Info" },
-  { title: "Instructors" },
-  { title: "Course Info (Basic)" },
-  { title: "Course Info" },
-  { title: "Summary" },
+const data: DataProps[] = [
+  { title: "Personal Info", status: "wait" },
+  { title: "Instructors", status: "wait" },
+  { title: "Course Info (Basic)", status: "wait" },
+  { title: "Course Info", status: "wait" },
+  { title: "Summary", status: "wait" },
 ];
 
 const CreateCourseContainer = React.forwardRef((props: any, ref) => {
-  const { current, setInstructors, ...others } = props;
+  const { current, setInstructors, stepData, setStepData, ...others } = props;
+  const [addInstructor, setAddInstructor] = useState(false);
   const _current = current as number;
 
   const RenderAddInstructorButton = React.forwardRef((props, ref) => {
@@ -43,7 +45,7 @@ const CreateCourseContainer = React.forwardRef((props: any, ref) => {
             color="cyan"
             appearance="primary"
             startIcon={<AddOutlineIcon />}
-            onClick={() => console.log("create")}
+            onClick={() => setAddInstructor(true)}
           >
             Add Another Instructor
           </Button>
@@ -65,17 +67,42 @@ const CreateCourseContainer = React.forwardRef((props: any, ref) => {
           <Animate children={RenderAddInstructorButton} inn={_current === 1} />
         </FlexboxGrid.Item>
       </FlexboxGrid>
-      <CustomSteps current={_current} data={data} />
-      <Animate children={PersonalInfo} inn={_current === 0} />
+      <CustomSteps current={_current} data={stepData} />
+      <Animate
+        children={PersonalInfo}
+        inn={_current === 0}
+        others={{ setStepData }}
+      />
       <Animate
         children={Instructors}
         inn={_current === 1}
-        others={{ setInstructors }}
+        others={{
+          setInstructors,
+          setStepData,
+          addInstructor,
+          setAddInstructor,
+        }}
       />
-      <Animate children={CourseInfoBasic} inn={_current === 2} />
-      <Animate children={CourseInfoBasic} inn={_current === 3} />
-      <Animate children={PersonalInfo} inn={_current === 4} />
-      <Animate children={PersonalInfo} inn={_current === 5} />
+      <Animate
+        children={CourseInfoBasic}
+        inn={_current === 2}
+        others={{ setStepData }}
+      />
+      <Animate
+        children={CourseInfoBasic}
+        inn={_current === 3}
+        others={{ setStepData }}
+      />
+      <Animate
+        children={PersonalInfo}
+        inn={_current === 4}
+        others={{ setStepData }}
+      />
+      <Animate
+        children={PersonalInfo}
+        inn={_current === 5}
+        others={{ setStepData }}
+      />
     </CreateCourseWrapper>
   );
 });
@@ -84,6 +111,8 @@ export default function CreateCourse() {
   const [current, setCurrent] = useState(0);
   const [instructors, setInstructors] = useState<Partial<InstructorData>[]>();
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [stepData, setStepData] = useState(data);
+  const [instructor, setInstructor] = useState<Partial<InstructorData>>();
 
   const navigate = useNavigate();
 
@@ -92,9 +121,12 @@ export default function CreateCourse() {
   };
 
   const move = (where: "left" | "right") => {
-    if (where === "left") current > 0 && setCurrent((p) => p - 1);
-    if (where === "right")
-      current < data.length - 1 && setCurrent((p) => p + 1);
+    if (where === "left" && current > 0) {
+      setCurrent((p) => p - 1);
+    }
+    if (where === "right" && current < data.length - 1) {
+      setCurrent((p) => p + 1);
+    }
   };
 
   const RenderInstructors = React.forwardRef((props, ref) => {
@@ -103,16 +135,19 @@ export default function CreateCourse() {
         {...props}
         ref={ref as React.RefObject<HTMLDivElement> | null | undefined}
       >
-        <AvatarGroup spacing={6}>
+        <AvatarGroup spacing={12}>
           {instructors?.length &&
-            instructors.map((instructor) => (
+            instructors.map((instructor, i) => (
               <Avatar
-                key={instructor.email}
+                key={i}
                 size="lg"
                 circle
                 src={instructor.profileImageUrl}
                 alt="@SevenOutman"
-                onClick={() => setOpenDrawer(true)}
+                onClick={() => {
+                  setInstructor(instructor);
+                  setOpenDrawer(true);
+                }}
                 style={{ cursor: "pointer" }}
               />
             ))}
@@ -125,7 +160,7 @@ export default function CreateCourse() {
     <>
       <Animate inn={current === 1} children={RenderInstructors} />
       <Animate
-        others={{ current, setInstructors }}
+        others={{ current, setInstructors, stepData, setStepData }}
         children={CreateCourseContainer}
       />
       <PageMoveButtons>
@@ -151,7 +186,7 @@ export default function CreateCourse() {
       <StyledDrawer
         open={openDrawer}
         setOpen={setOpenDrawer}
-        // children={<SocialMedia onChange={handleInputChange} />}
+        children={<ViewInstructor instructor={instructor} />}
       />
     </>
   );

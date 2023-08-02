@@ -6,6 +6,8 @@ import Typography from "../../_shared/components/Typography";
 import GlassContainer from "../../_shared/components/card/GlassContainer";
 import Animate from "../../_shared/components/Animate";
 import { useNavigate } from "react-router-dom";
+import Featured from "../../_shared/components/card/Featured";
+import CourseCard from "../../_shared/components/card/CourseCard";
 
 const LearnContainer = React.forwardRef((props, ref) => {
   const navigate = useNavigate();
@@ -42,8 +44,54 @@ const LearnContainer = React.forwardRef((props, ref) => {
         </FlexboxGrid>
       </Header>
       <Section>
-        <GlassContainer />
-        <GlassContainer />
+        <GlassContainer children={<Featured position="left" />} />
+        <GlassContainer children={<Featured position="right" />} />
+      </Section>
+      <Section $wrap>
+        <FlexboxGrid justify="center">
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="start">
+              <CourseCard onClick={() => navigate("1/preview")} />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="center">
+              <CourseCard onClick={() => navigate("2/preview")} />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="center">
+              <CourseCard onClick={() => navigate("3/preview")} />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="end">
+              <CourseCard />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
+        <FlexboxGrid>
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="start">
+              <CourseCard />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="center">
+              <CourseCard />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="center">
+              <CourseCard />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item colspan={6}>
+            <FlexboxGrid justify="end">
+              <CourseCard />
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
       </Section>
     </LearnWrapper>
   );
@@ -56,12 +104,14 @@ export default function Learn() {
 const LearnWrapper = styled.div`
   /* background-color: #07131d; */
   width: 100%;
+  margin-bottom: 24px;
 `;
 
 const Header = styled.div``;
 
-const Section = styled.section`
+const Section = styled.section<{ $wrap?: boolean }>`
   display: flex;
+  flex-wrap: ${({ $wrap }) => ($wrap ? "wrap" : "nowrap")};
   gap: 24px;
   margin-top: 32px;
 `;

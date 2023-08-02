@@ -29,5 +29,7 @@ export interface RouteConstant {
   creatingSectionType: Route;
   creatingSectionContent: Route;
   learning: Route;
+  coursePreview: Route;
   myCourses: Route;
+  settings: Route;
 }

@@ -3,8 +3,11 @@ import { styled } from "styled-components";
 import Card from "../../_shared/components/card/Card";
 import { FlexboxGrid, Panel, Form, ButtonToolbar, Button } from "rsuite";
 import Animate from "../../_shared/components/Animate";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
+
   const LoginComponent = React.forwardRef((props, ref) => {
     return (
       <CardWrapper
@@ -34,8 +37,18 @@ export default function Login() {
                       </Form.Group>
                       <Form.Group>
                         <ButtonToolbar>
-                          <Button appearance="primary">Sign in</Button>
-                          <Button appearance="link">Forgot password?</Button>
+                          <Button
+                            appearance="primary"
+                            onClick={() => navigate("/learn")}
+                          >
+                            Sign in
+                          </Button>
+                          <Button
+                            appearance="link"
+                            onClick={() => navigate("/forgot_password")}
+                          >
+                            Forgot password?
+                          </Button>
                         </ButtonToolbar>
                       </Form.Group>
                     </Form>
